@@ -1,0 +1,18 @@
+[project]
+name = "geocodems"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.112.4",
+    "googlemaps>=4.10.0",
+    "ms-core",
+    "multimethod>=1.12",
+    "pydantic>=2.11.4",
+    "tortoise-orm[asyncpg]>=0.21.7",
+    "uvicorn>=0.34.2",
+]
+
+[tool.uv.sources]
+ms-core = { url = "https://github.com/HexChap/MSCore/archive/master.zip" }

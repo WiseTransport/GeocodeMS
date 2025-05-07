@@ -1,22 +1,21 @@
 from pathlib import Path
 
+from ms_core.setup import include_routers
 import uvicorn as uvicorn
 from fastapi import FastAPI
-from ms_core import setup_app
-
-from app.settings import db_url
+from fastapi.middleware.cors import CORSMiddleware
 
 application = FastAPI(
-    title="TemplateMicroservice",
-)
-
-setup_app(
-    application,
-    db_url,
-    Path("app") / "routers",
-    ["app.models"]
+    title="GeocodeMS",
 )
 
 
-if __name__ == "__main__":
-    uvicorn.run("main:application", port=8000, reload=True)
+application.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+include_routers(application, Path("app") / "routers")
